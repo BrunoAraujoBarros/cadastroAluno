@@ -2,17 +2,23 @@ package com.example.cadastroaluno.Controler;
 
 import com.example.cadastroaluno.DTO.AlunosDTO;
 import com.example.cadastroaluno.Models.AlunosModel;
+import com.example.cadastroaluno.Models.ClassesModel;
 import com.example.cadastroaluno.Service.AlunosServicoRepositorio;
+import com.example.cadastroaluno.Service.ClasesServicoRepositorio;
 import jakarta.validation.Valid;
 import jakarta.websocket.server.PathParam;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
+@NoArgsConstructor
 @RestController
 @RequestMapping("/api/alunos")
 public class AlunosControle {
@@ -21,6 +27,11 @@ public class AlunosControle {
     AlunosControle(AlunosServicoRepositorio alunosServicoRepositorio){
         this.alunosServicoRepositorio = alunosServicoRepositorio;
     }
+    @Autowired
+    ClasesServicoRepositorio clasesServicoRepositorio;
+    AlunosControle(ClasesServicoRepositorio clasesServicoRepositorio){
+        this.clasesServicoRepositorio = clasesServicoRepositorio;}
+
 
     @GetMapping("/")
     public ResponseEntity<List<AlunosModel>> todosAlunos(){

@@ -22,11 +22,18 @@ public class AlunosDTO {
     private Long Matricula;
     @NotBlank(message = "Falta o nome")
     private String Nome;
+    @NotBlank(message = "Falta nome do responsavel")
     private String NomeResponsavel;
+    @NotBlank(message = "Falta o sexo")
     private String Sexo;
+    @NotNull(message = "Falta a data de nascimento")
     private Date dataNascimento;
+    @NotNull(message = "Falta o CPF")
     private long CPF;
+    @NotNull(message = "Falta o Telefone")
     private BigDecimal Telefone1;
+    @NotBlank(message = "Falta a serie ")
+    private String serieAluno;
     @Nullable
     private String Email;
     private BigDecimal Telefone2;

@@ -1,23 +1,16 @@
 package com.example.cadastroaluno.Service;
 
 import com.example.cadastroaluno.DTO.AlunosDTO;
-import com.example.cadastroaluno.Exepcion.MensagemException;
 import com.example.cadastroaluno.Exepcion.NotfoundException;
 import com.example.cadastroaluno.Models.AlunosModel;
 import com.example.cadastroaluno.Repositorio.AlunosRepositori;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Optional;
-
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @Service
 public class AlunosServicoRepositorio {
@@ -33,6 +26,7 @@ public class AlunosServicoRepositorio {
     public List<AlunosModel> bucarMatrucilaPendenste(){
         return alunosRepositori.buscarMatriculaPendente();
     }
+
     public  AlunosModel umAluno(Long id){
         Optional<AlunosModel> alun0 = alunosRepositori.findById(id);
         return alun0.orElseThrow(() -> new NotfoundException("Não Encontrado"));
@@ -42,11 +36,7 @@ public class AlunosServicoRepositorio {
     public AlunosModel inserir(AlunosDTO alunosDTO){
         var alunosModel = new AlunosModel();
         BeanUtils.copyProperties(alunosDTO, alunosModel);
-//        Optional<AlunosModel> alunoExiste = alunosRepositori.findEventByCPF(alunosModel.getCPF());
-//        if (alunoExiste.isPresent() && alunoExiste.get().getCPF() != alunosModel.getCPF()) {
-//            throw new MensagemException("Já existe um evento com o título informado");
-//        }
-            if (alunosModel.getEmail() == null || alunosModel.getTelefone1() == null) {
+            if (alunosModel.getEmail() == null || alunosModel.getTelefone2() == null) {
                 alunosModel.setAlunoStatus("Pendente");
             } else {
                 alunosModel.setAlunoStatus("Concluido");
@@ -61,12 +51,6 @@ public class AlunosServicoRepositorio {
         if (alunosModel.getCPF() > 0 && alunosModel.getTelefone1() != null) {
             alunosModel.setAlunoStatus("Concluido");
         }
-
-        Optional<AlunosModel> alunoExists = alunosRepositori.findEventByCPF(alunosModel.getCPF());
-        if (alunoExists.isPresent() && alunoExists.get().getMatricula() != alunosModel.getMatricula()) {
-            throw new MensagemException("Já existe um aluno com o CPF informado");
-        }
-
         return alunosRepositori.save(alunosModel);
     }
 
