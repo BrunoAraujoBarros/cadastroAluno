@@ -1,10 +1,12 @@
 package com.example.cadastroaluno.Controler;
 
 import com.example.cadastroaluno.DTO.ClassesDTO;
+import com.example.cadastroaluno.Models.AlunosModel;
 import com.example.cadastroaluno.Models.ClassesModel;
 import com.example.cadastroaluno.Service.ClasesServicoRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 

@@ -52,7 +52,6 @@ public class AlunosControle {
     }
 
     @PostMapping("/")
-    @CrossOrigin(origins = "http://localhost:5173/")
     public ResponseEntity<AlunosModel> inserir(@RequestBody @Valid AlunosDTO alunosDTO) {
         AlunosModel alunosModel = alunosServicoRepositorio.inserir(alunosDTO);
 
@@ -69,8 +68,8 @@ public class AlunosControle {
        return ResponseEntity.ok().build();
     }
     private static final List<String> SERIES_VALIDAS = Arrays.asList(
-            "Maternal", "Pré-escola I", "Pré-escola II", "1° ano", "2° ano", "3° ano", "4° ano", "5° ano",
-            "6° ano", "7° ano", "8° ano", "9° ano"
+            "maternal", "jardim1", "jardim2", "ano1", "ano2", "ano3", "ano4", "ano5",
+            "ano6", "ano7", "ano8", "ano9"
     );
     @GetMapping("/alunos")
     public List<AlunosModel> buscarAlunosPorSerie(@RequestParam String serieAno) {

@@ -50,7 +50,6 @@ public class AlunosServicoRepositorio {
 
     }
 
-    @Transactional(rollbackOn = Exception.class)
     public AlunosModel alterar(AlunosModel alunosModel) {
         if (alunosModel.getEmailResposavel() != null && alunosModel.getTipoSanguinio() != null) {
             alunosModel.setAlunoStatus("Concluido");
