@@ -40,7 +40,18 @@ public class AlunosServicoRepositorio {
     public AlunosModel inserir(AlunosDTO alunosDTO){
         var alunosModel = new AlunosModel();
         BeanUtils.copyProperties(alunosDTO, alunosModel);
-            if (alunosModel.getEmailResposavel() == null || alunosModel.getTipoSanguinio() == null) {
+            if (alunosModel.getEmailResposavel() == null ||
+                    (alunosModel.getEmailResposavel() != null && alunosModel.getEmailResposavel().length() < 2) ||
+                    alunosModel.getCpfPai() == null ||
+                    (alunosModel.getCpfPai() != null && alunosModel.getCpfPai().length() < 2) ||
+                    alunosModel.getCpfMae() == null ||
+                    (alunosModel.getCpfMae() != null && alunosModel.getCpfMae().length() < 2) ||
+                    alunosModel.getRgMae() == null ||
+                    (alunosModel.getRgMae() != null && alunosModel.getRgMae().length() < 2) ||
+                    alunosModel.getRgPai() == null ||
+                    (alunosModel.getRgPai() != null && alunosModel.getRgPai().length() < 2) ||
+                    alunosModel.getEndereco() == null ||
+                    (alunosModel.getEndereco() != null && alunosModel.getEndereco().length() < 2)) {
                 alunosModel.setAlunoStatus("Pendente");
             } else {
                 alunosModel.setAlunoStatus("Concluido");
@@ -51,7 +62,8 @@ public class AlunosServicoRepositorio {
     }
 
     public AlunosModel alterar(AlunosModel alunosModel) {
-        if (alunosModel.getEmailResposavel() != null && alunosModel.getTipoSanguinio() != null) {
+        if (alunosModel.getEmailResposavel() != null || alunosModel.getCpfPai() != null ||
+                alunosModel.getCpfMae() != null || alunosModel.getRgMae() != null || alunosModel.getRgPai() != null || alunosModel.getEndereco() != null) {
             alunosModel.setAlunoStatus("Concluido");
         }
         return alunosRepositori.save(alunosModel);
@@ -62,6 +74,10 @@ public class AlunosServicoRepositorio {
 
         AlunosModel alunosModel = alunoExist.orElseThrow(() -> new NotfoundException("Aluno Sumido"));
         alunosRepositori.delete(alunosModel);
+    }
+
+    public boolean existsByCpf(Long cpf) {
+        return alunosRepositori.existsByCpf(cpf);
     }
 }
 

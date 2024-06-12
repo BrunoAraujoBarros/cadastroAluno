@@ -78,4 +78,12 @@ public class AlunosControle {
         }
         return alunosServicoRepositorio.buscarPorSerie(serieAno);
     }
+
+    @GetMapping("/verificar-cpf")
+    public ResponseEntity<Map<String, Boolean>> verificarCpf(@RequestParam Long cpf) {
+        boolean exists = alunosServicoRepositorio.existsByCpf(cpf);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("exists", exists);
+        return ResponseEntity.ok(response);
+    }
 }
