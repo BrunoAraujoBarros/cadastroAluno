@@ -33,6 +33,10 @@ public class ClassesControle {
         return clasesServicoRepositorio.modificarNotas(classesModel);
 
     }
+    @PutMapping("/editar-notas/{id}")
+    public ClassesModel editarNotas(@PathVariable(value = "id")long id, @RequestBody ClassesDTO classesDTO) {
+        return clasesServicoRepositorio.editarNotas(id, classesDTO);
+    }
 }
 
 

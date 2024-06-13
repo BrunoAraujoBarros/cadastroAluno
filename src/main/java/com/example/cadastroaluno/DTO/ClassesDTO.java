@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class ClassesDTO {
-    @Nullable
+
     private double Portugues;
-    private double Redação;
+    private double Redacao;
     private double Ingles;
     private double Matematica;
     private double Geometria;

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class AlunosServicoRepositorio {
@@ -62,8 +63,12 @@ public class AlunosServicoRepositorio {
     }
 
     public AlunosModel alterar(AlunosModel alunosModel) {
-        if (alunosModel.getEmailResposavel() != null || alunosModel.getCpfPai() != null ||
-                alunosModel.getCpfMae() != null || alunosModel.getRgMae() != null || alunosModel.getRgPai() != null || alunosModel.getEndereco() != null) {
+        if ((alunosModel.getEmailResposavel() != null && alunosModel.getEmailResposavel().length() > 1) &&
+                (alunosModel.getCpfPai() != null && alunosModel.getCpfPai().length() > 1) &&
+                (alunosModel.getCpfMae() != null && alunosModel.getCpfMae().length() > 1) &&
+                (alunosModel.getRgMae() != null && alunosModel.getRgMae().length() > 1) &&
+                (alunosModel.getRgPai() != null && alunosModel.getRgPai().length() > 1) &&
+                (alunosModel.getEndereco() != null && alunosModel.getEndereco().length() > 1)) {
             alunosModel.setAlunoStatus("Concluido");
         }
         return alunosRepositori.save(alunosModel);
@@ -76,8 +81,6 @@ public class AlunosServicoRepositorio {
         alunosRepositori.delete(alunosModel);
     }
 
-    public boolean existsByCpf(Long cpf) {
-        return alunosRepositori.existsByCpf(cpf);
-    }
 }
+
 

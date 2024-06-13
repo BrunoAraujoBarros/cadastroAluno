@@ -19,7 +19,7 @@ public class ClassesModel implements Serializable {
     private long id;
 
     private double Portugues;
-    private double Redação;
+    private double Redacao;
     private double Ingles;
     private double Matematica;
     private double Geometria;
@@ -34,7 +34,7 @@ public class ClassesModel implements Serializable {
     private double media;
 
     public double getMedia() {
-        double rawMedia = (Portugues + Redação + Ingles + Matematica + Geometria + Ciencias + Historia + Geografia + Filosofia
+        double rawMedia = (Portugues + Redacao + Ingles + Matematica + Geometria + Ciencias + Historia + Geografia + Filosofia
                 + Arte + EFisica + DireitoCidadania + Religiao ) / 14;
         return BigDecimal.valueOf(rawMedia)
                 .setScale(2, RoundingMode.HALF_UP)
