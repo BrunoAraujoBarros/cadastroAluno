@@ -28,9 +28,6 @@ public class ClasesServicoRepositorio {
     ClasesServicoRepositorio(ClasesRepositorio clasesRepositorio){
         this.clasesRepositorio = clasesRepositorio;
     }
-    public List<ClassesModel> exibirNotas(){
-        return clasesRepositorio.findAll();
-    }
     public List<Object[]> buscarNotasComNomeDosAlunos() {
         return clasesRepositorio.buscarNotasComNomeDosAlunos();
     }

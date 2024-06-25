@@ -9,8 +9,11 @@ import java.util.List;
 
 @Repository
 public interface AlunosRepositori extends JpaRepository<AlunosModel, Long> {
-    @Query("select s from AlunosModel s where s.emailResposavel is null or s.tipoSanguinio is null")
+    //Realiza a busca no banco de dados
+    @Query("select s from AlunosModel s where s.emailResposavel is null or s.cpfPai is null " +
+            "or s.cpfMae is null or s.rgPai is null or s.rgMae is null or s.endereco is null")
     List<AlunosModel> buscarMatriculaPendente();
+    //Metodo que faz a busca
     List<AlunosModel> findBySerieAno(String serieAno);
-    boolean existsByCpf(Long cpf);}
+    }
 

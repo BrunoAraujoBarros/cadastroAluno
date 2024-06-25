@@ -21,6 +21,7 @@ public class AlunosServicoRepositorio {
     AlunosServicoRepositorio(AlunosRepositori alunosRepositori){
         this.alunosRepositori = alunosRepositori;
     }
+    // Chama a lista de alunos
     public List<AlunosModel> todosAlunos(){
         return alunosRepositori.findAll();
     }
@@ -28,6 +29,7 @@ public class AlunosServicoRepositorio {
         return alunosRepositori.buscarMatriculaPendente();
 
     }
+    //Busca pela serie
     public List<AlunosModel> buscarPorSerie(String serieAno) {
         return alunosRepositori.findBySerieAno(serieAno);
     }
@@ -40,6 +42,7 @@ public class AlunosServicoRepositorio {
     @Transactional(rollbackOn = Exception.class)
     public AlunosModel inserir(AlunosDTO alunosDTO){
         var alunosModel = new AlunosModel();
+        //Transformando em Model
         BeanUtils.copyProperties(alunosDTO, alunosModel);
             if (alunosModel.getEmailResposavel() == null ||
                     (alunosModel.getEmailResposavel() != null && alunosModel.getEmailResposavel().length() < 2) ||
@@ -61,7 +64,7 @@ public class AlunosServicoRepositorio {
 
 
     }
-
+        // Ferifica se na alteração a matricula foi completa
     public AlunosModel alterar(AlunosModel alunosModel) {
         if ((alunosModel.getEmailResposavel() != null && alunosModel.getEmailResposavel().length() > 1) &&
                 (alunosModel.getCpfPai() != null && alunosModel.getCpfPai().length() > 1) &&
