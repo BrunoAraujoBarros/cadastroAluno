@@ -7,7 +7,7 @@ import com.example.cadastroaluno.Models.ClassesModel;
 import com.example.cadastroaluno.Repositorio.AlunosRepositori;
 import com.example.cadastroaluno.Repositorio.ClasesRepositorio;
 import lombok.NoArgsConstructor;
-import org.apache.velocity.exception.ResourceNotFoundException;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,14 +18,12 @@ import java.util.Optional;
 @Service
 public class ClasesServicoRepositorio {
 
-    @Autowired
-    AlunosRepositori alunosRepositori;
-    ClasesServicoRepositorio(AlunosRepositori alunosRepositori){
-        this.alunosRepositori = alunosRepositori;
-    }
-    @Autowired
+
     ClasesRepositorio clasesRepositorio;
-    ClasesServicoRepositorio(ClasesRepositorio clasesRepositorio){
+    AlunosRepositori alunosRepositori;
+    @Autowired
+    ClasesServicoRepositorio(AlunosRepositori alunosRepositori, ClasesRepositorio clasesRepositorio){
+        this.alunosRepositori = alunosRepositori;
         this.clasesRepositorio = clasesRepositorio;
     }
     public List<Object[]> buscarNotasComNomeDosAlunos() {

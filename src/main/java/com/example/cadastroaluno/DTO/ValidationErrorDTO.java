@@ -11,10 +11,6 @@ public class ValidationErrorDTO extends StandardErrorDTO {
         super(timestamp, status, error, message, path);
     }
 
-    public List<FieldMessageDTO> getErrors() {
-        return errors;
-    }
-
     public void addError(String fieldName, String message) {
         errors.add(new FieldMessageDTO(fieldName, message));
     }

@@ -1,6 +1,6 @@
 package com.example.cadastroaluno.DTO;
 
-import jakarta.annotation.Nullable;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

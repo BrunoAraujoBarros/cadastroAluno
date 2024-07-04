@@ -11,13 +11,14 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
+
 
 @Service
 public class AlunosServicoRepositorio {
 
-    @Autowired
+
     AlunosRepositori alunosRepositori;
+    @Autowired
     AlunosServicoRepositorio(AlunosRepositori alunosRepositori){
         this.alunosRepositori = alunosRepositori;
     }
@@ -44,18 +45,7 @@ public class AlunosServicoRepositorio {
         var alunosModel = new AlunosModel();
         //Transformando em Model
         BeanUtils.copyProperties(alunosDTO, alunosModel);
-            if (alunosModel.getEmailResposavel() == null ||
-                    (alunosModel.getEmailResposavel() != null && alunosModel.getEmailResposavel().length() < 2) ||
-                    alunosModel.getCpfPai() == null ||
-                    (alunosModel.getCpfPai() != null && alunosModel.getCpfPai().length() < 2) ||
-                    alunosModel.getCpfMae() == null ||
-                    (alunosModel.getCpfMae() != null && alunosModel.getCpfMae().length() < 2) ||
-                    alunosModel.getRgMae() == null ||
-                    (alunosModel.getRgMae() != null && alunosModel.getRgMae().length() < 2) ||
-                    alunosModel.getRgPai() == null ||
-                    (alunosModel.getRgPai() != null && alunosModel.getRgPai().length() < 2) ||
-                    alunosModel.getEndereco() == null ||
-                    (alunosModel.getEndereco() != null && alunosModel.getEndereco().length() < 2)) {
+            if (alunosModel.getEmailResposavel() == null || alunosModel.getEmailResposavel().length() < 2 || alunosModel.getCpfPai() == null || alunosModel.getCpfPai().length() < 2 || alunosModel.getCpfMae() == null || alunosModel.getCpfMae().length() < 2 || alunosModel.getRgMae() == null || alunosModel.getRgMae().length() < 2 || alunosModel.getRgPai() == null || alunosModel.getRgPai().length() < 2 || alunosModel.getEndereco() == null || alunosModel.getEndereco().length() < 2) {
                 alunosModel.setAlunoStatus("Pendente");
             } else {
                 alunosModel.setAlunoStatus("Concluido");
